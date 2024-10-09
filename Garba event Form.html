@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garba Event Registration</title>
+</head>
+<body>
+    <h2>Garba Event Registration</h2>
+    <form id="garbaForm">
+        <label for="parentName">Parent's Name:</label><br>
+        <input type="text" id="parentName" name="parentName" required><br><br>
+
+        <label for="studentName">Student's Name:</label><br>
+        <input type="text" id="studentName" name="studentName" required><br><br>
+
+        <label for="studentStandard">Student's Standard:</label><br>
+        <input type="text" id="studentStandard" name="studentStandard" required><br><br>
+
+        <label for="studentDivision">Student's Division:</label><br>
+        <input type="text" id="studentDivision" name="studentDivision" required><br><br>
+
+        <label for="mobileNumber">Mobile Number:</label><br>
+        <input type="text" id="mobileNumber" name="mobileNumber" required><br><br>
+
+        <input type="submit" value="Register">
+    </form>
+
+    <div id="qrCode"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script>
+        document.getElementById('garbaForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Collect form data
+            const parentName = document.getElementById('parentName').value;
+            const studentName = document.getElementById('studentName').value;
+            const studentStandard = document.getElementById('studentStandard').value;
+            const studentDivision = document.getElementById('studentDivision').value;
+            const mobileNumber = document.getElementById('mobileNumber').value;
+
+            // Combine data into a single string
+            const formData = `Parent: ${parentName}, Student: ${studentName}, Standard: ${studentStandard}, Division: ${studentDivision}, Mobile: ${mobileNumber}`;
+
+            // Generate QR code with form data
+            const qrCodeContainer = document.getElementById('qrCode');
+            qrCodeContainer.innerHTML = ""; // Clear previous QR code if any
+            new QRCode(qrCodeContainer, formData);
+        });
+    </script>
+</body>
+</html>
